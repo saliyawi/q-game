@@ -6,12 +6,12 @@ You can read more about this game from [here](https://en.wikipedia.org/wiki/Mont
 This project is fully developed using React and the tech stack will mention below.
 
 ## Tools and Technical Stack
-Javascript ES6
-React 16.13.1
-Material UI 4.10.2
-Enzyme 3.11
-npm for Dependency Management
-WebPack for Bundling
+Javascript ES6 <br />
+React 16.13.1 <br />
+Material UI 4.10.2 <br />
+Enzyme 3.11 <br />
+npm for Dependency Management <br />
+WebPack for Bundling <br />
 Babel for Compiling 
 
 ## Available Scripts
