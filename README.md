@@ -1,5 +1,19 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Project Summary
+This is a project that simulate popular game called "Monty Hall". 
+You can read more about this game from [here](https://en.wikipedia.org/wiki/Monty_Hall_problem).
+This project is fully developed using React and the tech stack will mention below.
+
+## Tools and Technical Stack
+Javascript ES6 <br />
+React 16.13.1 <br />
+Material UI 4.10.2 <br />
+Enzyme 3.11 <br />
+npm for Dependency Management <br />
+WebPack for Bundling <br />
+Babel for Compiling 
+
 ## Available Scripts
 
 In the project directory, you can run:
