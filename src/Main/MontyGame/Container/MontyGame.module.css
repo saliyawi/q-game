@@ -1,0 +1,16 @@
+.root {
+  margin-left: 35px;
+  flex: 1;
+  width: calc(100%);
+}
+.cards {
+  text-align: center;
+  justify-content: space-around;
+}
+.iconDiv {
+  margin: 8px 0px;
+}
+.icon {
+  width: 250px;
+  height: 250px;
+}

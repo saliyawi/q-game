@@ -1,0 +1,42 @@
+.root {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  background-image: url("../../../Images/Header/QGbackground.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.topBar {
+  padding-left: 35;
+  background-color: rgba(51, 51, 51, 1);
+  align-items: center;
+  max-height: 62px;
+}
+.colDiv {
+  width: 100%;
+  height: calc(100vh - 40px);
+}
+.col1 {
+  height: 100%;
+  width: 70%;
+}
+.center {
+  text-align: center;
+}
+.button {
+  border: 2px solid #000000;
+  color: black;
+  padding: 15px 32px;
+  text-align: "center";
+  text-decoration: "none";
+  display: "inline-block";
+  font-size: "16px";
+  margin: "4px 2px";
+  cursor: "pointer";
+  background-color: "#94EFD2";
+}
+.msgText {
+  font-size: "x-large";
+  font-weight: "bold";
+}
