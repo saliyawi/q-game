@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
-import { auth } from "../src/InitialLoader/Firebase/utils";
+import { auth, handleUserProfile } from "../src/InitialLoader/Firebase/utils";
 import Home from "./Main/Home/Container/Home";
 import Registration from "./Main/Registration/Container/Registration";
 import Login from "./Main/Login/Components/Login";
@@ -21,13 +21,21 @@ class App extends Component {
   authListener = null;
 
   componentDidMount() {
-    this.authListener = auth.onAuthStateChanged((userAuth) => {
-      if (!userAuth) {
-        this.setState({ ...initialState });
+    this.authListener = auth.onAuthStateChanged(async userAuth => {
+      if (userAuth) {
+        const userRef = await handleUserProfile(userAuth);
+        userRef.onSnapshot((snapshot) => {
+          this.setState({
+            currentUser: {
+              id: snapshot.id,
+              ...snapshot.data(),
+            },
+          });
+        });
       }
 
       this.setState({
-        currentUser: userAuth,
+        ...initialState,
       });
     });
   }
