@@ -10,9 +10,11 @@
     "classnames": "^2.2.6",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
+    "firebase": "^7.15.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-intl": "^4.6.9",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
     "react-test-renderer": "^16.13.1"
   },

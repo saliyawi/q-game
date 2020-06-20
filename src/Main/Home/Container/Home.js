@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import ClassNames from "classnames";
 import classes from "./Home.module.css";
-import Header from "../../Header/Container/Header";
+import Header from "../../Header/Components/Header";
 import QGbackground from "../../../Images/Header/QGbackground.png";
 import MontyGame from "../../MontyGame/Container/MontyGame";
 
@@ -101,12 +101,12 @@ class Home extends React.Component {
         className={ClassNames(classes.root, classes.flexColumn, classes.color1)}
         data-test="homeComponent"
       >
-        <div
+        {/* <div
           className={ClassNames(classes.topBar, classes.flexRow)}
           data-test="headerComponent"
         >
           <Header />
-        </div>
+        </div> */}
         <MontyGame
           reset={resetGame}
           updateUserStatus={this.handleUserStatus}
