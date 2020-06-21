@@ -5,6 +5,8 @@ export const handleUserProfile = userAuth => {
     if (!userAuth) return;
     const { displayName, email } = userAuth;
 
+    //console.log('userAuth',userAuth)
+
     const url = apiUrls.addUser; 
     const method = 'POST';
     const data = {

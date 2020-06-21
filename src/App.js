@@ -5,7 +5,8 @@ import Home from "./Main/Home/Container/Home";
 import Login from "./Main/Login/Components/Login";
 import MainLayout from "./Main/Layouts/Components/MainLayout";
 import HomepageLayout from "./Main/Layouts/Components/HomePageLayout";
-import {handleUserProfile} from '../src/Core/Api/UserApi'
+import Results from "./Main/Results/Components/Results";
+import {handleUserProfile} from '../src/Core/Api/UserApi';
  
 const initialState = {
   currentUser: null,
@@ -43,6 +44,14 @@ class App extends Component {
     return (
       <div className="App" data-test="appComponent">
         <Switch>
+        <Route
+            path="/results"
+            render={() => (
+              <MainLayout currentUser={currentUser}>
+                <Results />
+              </MainLayout>
+            )}
+          />
           <Route
             path="/login"
             render={() =>
@@ -59,7 +68,7 @@ class App extends Component {
             path="/"
             render={() => (
               <HomepageLayout currentUser={currentUser}>
-                <Home />
+                <Home currentUser={currentUser}/>
               </HomepageLayout>
             )}
           />

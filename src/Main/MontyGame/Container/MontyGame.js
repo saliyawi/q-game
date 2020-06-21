@@ -123,10 +123,5 @@ class MontyGame extends React.Component {
   }
 }
 
-// MontyGame.propTypes = {
-//     classes: PropTypes.object.isRequired,
-// };
-
-//const MontyGameWithStyles = withStyles(styles)(MontyGame);
 
 export default MontyGame;
