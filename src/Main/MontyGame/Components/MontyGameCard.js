@@ -6,44 +6,6 @@ import ClassNames from "classnames";
 import classes from "./MontyGameCard.module.css";
 import { montyCards } from "../../../Core/Constants/MontyCards";
 
-// const styles = () => ({
-//     root: {
-//         marginLeft: 35,
-//         flex: 1,
-//         width: 'calc(100%)'
-//     },
-//     cards: {
-//         textAlign: 'center',
-//         justifyContent: 'space-around',
-//     },
-//     card: {
-//         '&:hover': {
-//             marginTop: '0px',
-//         },
-//         cursor: 'pointer',
-//         maxWidth: 100,
-//         marginTop: "15px",
-//         transition: 'all 0.3s ease-in',
-//         flexWrap: 'wrap'
-//     },
-//     iconDiv: {
-//         margin: '8px 0px',
-//     },
-//     icon: {
-//         width: 250,
-//         height: 250,
-//     },
-//     displayTextStyle: {
-//         fontFamily: "Roboto-Medium, Roboto",
-//         fontSize: 18,
-//         color: "#333333",
-//         fontWeight: 500,
-//         marginTop: 10
-//     },
-// }
-
-// );
-
 export class MontyGameCard extends React.Component {
   constructor(props) {
     super(props);

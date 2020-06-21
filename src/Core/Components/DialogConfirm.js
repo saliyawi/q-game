@@ -9,7 +9,6 @@ import { withStyles } from '@material-ui/core/styles';
 
 
 const styles = () => ({
-
     button :{
         border: '2px solid #000000',
         color: 'black',

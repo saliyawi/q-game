@@ -7,51 +7,6 @@ import Header from "../../Header/Components/Header";
 import QGbackground from "../../../Images/Header/QGbackground.png";
 import MontyGame from "../../MontyGame/Container/MontyGame";
 
-// const styles = () => ({
-//   root: {
-//     position: "relative",
-//     height: "100vh",
-//     width: "100%",
-//     backgroundImage: "url(" + QGbackground + ")",
-//     backgroundPosition: "center",
-//     backgroundRepeat: "no-repeat",
-//     backgroundSize: "cover",
-//   },
-//   topBar: {
-//     paddingLeft: 35,
-//     backgroundColor: "rgba(51, 51, 51, 1)",
-//     alignItems: "center",
-//     maxHeight: "62px",
-//   },
-//   colDiv: {
-//     width: "100%",
-//     height: "calc(100vh - 40px)",
-//   },
-//   col1: {
-//     height: "100%",
-//     width: "70%",
-//   },
-//   center: {
-//     textAlign: "center",
-//   },
-//   button: {
-//     border: "2px solid #000000",
-//     color: "black",
-//     padding: "15px 32px",
-//     textAlign: "center",
-//     textDecoration: "none",
-//     display: "inline-block",
-//     fontSize: "16px",
-//     margin: "4px 2px",
-//     cursor: "pointer",
-//     backgroundColor: "#94EFD2",
-//   },
-//   msgText: {
-//     fontSize: "x-large",
-//     fontWeight: "bold",
-//   },
-// });
-
 class Home extends React.Component {
   constructor(props) {
     super(props);
@@ -61,6 +16,7 @@ class Home extends React.Component {
       winCount: 0,
       lossCount: 0,
       totalPlayCount: 0,
+      rounds: 0
     };
   }
 
@@ -121,7 +77,7 @@ class Home extends React.Component {
             Play Again
           </button>
         </div>
-        <div className={classes.center}>
+        {/* <div className={classes.center}>
           <span className={classes.msgText}>{userStatusMsg}</span>
         </div>
         <div className={classes.center}>
@@ -133,7 +89,7 @@ class Home extends React.Component {
           <span className={classes.msgText}>
             {"Loss Count : " + lossCount + "/" + totalPlayCount}
           </span>
-        </div>
+        </div> */}
       </div>
     );
   }

@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
-import { auth, handleUserProfile } from "../src/InitialLoader/Firebase/utils";
+import { auth } from "../src/InitialLoader/Firebase/utils";
 import Home from "./Main/Home/Container/Home";
-import Registration from "./Main/Registration/Container/Registration";
 import Login from "./Main/Login/Components/Login";
 import MainLayout from "./Main/Layouts/Components/MainLayout";
 import HomepageLayout from "./Main/Layouts/Components/HomePageLayout";
-
+import {handleUserProfile} from '../src/Core/Api/UserApi'
+ 
 const initialState = {
   currentUser: null,
 };
@@ -21,21 +21,15 @@ class App extends Component {
   authListener = null;
 
   componentDidMount() {
-    this.authListener = auth.onAuthStateChanged(async userAuth => {
-      if (userAuth) {
-        const userRef = await handleUserProfile(userAuth);
-        userRef.onSnapshot((snapshot) => {
-          this.setState({
-            currentUser: {
-              id: snapshot.id,
-              ...snapshot.data(),
-            },
-          });
-        });
+    this.authListener = auth.onAuthStateChanged((userAuth) => {
+      if (!userAuth) {
+        this.setState({ ...initialState });
+      } else{
+        handleUserProfile(userAuth); // Set user into local DB
       }
 
       this.setState({
-        ...initialState,
+        currentUser: userAuth,
       });
     });
   }
@@ -49,14 +43,6 @@ class App extends Component {
     return (
       <div className="App" data-test="appComponent">
         <Switch>
-          <Route
-            path="/registration"
-            render={() => (
-              <MainLayout currentUser={currentUser}>
-                <Registration />
-              </MainLayout>
-            )}
-          />
           <Route
             path="/login"
             render={() =>
