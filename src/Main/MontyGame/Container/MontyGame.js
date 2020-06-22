@@ -1,10 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
 import MontyGameCard from "../Components/MontyGameCard";
 import { montyDoors } from "../../../Core/Constants/MontyCards";
 import DialogConfirm from "../../../Core/Components/DialogConfirm";
-import { montyMessages } from "../../../Core/Constants/MontyMessages";
+import classes from "./MontyGame.module.css";
 
 class MontyGame extends React.Component {
   constructor(props) {
@@ -15,7 +14,7 @@ class MontyGame extends React.Component {
   //Life cycle hooks
 
   componentWillReceiveProps(nextProps) {
-    const { reset } = nextProps;
+    const { reset} = nextProps;
 
     if (reset) {
       this.setState({ ...this.getInitialState() });
@@ -32,10 +31,12 @@ class MontyGame extends React.Component {
       openModal: false,
       confirmMsg: "",
       resetGame: true,
+     
     };
   }
 
   setCards = (selectedId, userSelectedRound) => {
+    const { nextGameRound } = this.props;
     let { montyCards, carIndex } = this.state;
 
     let newCards = montyCards.slice(0);
@@ -55,8 +56,9 @@ class MontyGame extends React.Component {
       if (userSelectedRound === 2) {
         newCards[i] = i === carIndex ? montyDoors.carDoor : montyDoors.goatDoor;
 
+        let nextRound = nextGameRound + 1;
         const userWin = parseInt(selectedId) === carIndex ? true : false;
-        this.props.updateUserStatus(userWin);
+        this.props.updateUserStatus(userWin, nextRound, newCards);
       }
     }
 
@@ -64,15 +66,9 @@ class MontyGame extends React.Component {
 
     if (userSelectedRound === 1) {
       const usrSelDoor = parseInt(selectedId) + 1;
-      //const msg = intl.formatMessage({ id: montyMessages.montySelectionMsg }, { montySelectedDoor: montySelectedDoor });
       this.setState({
         openModal: true,
-        confirmMsg:
-          "Monty selected Door " +
-          montySelectedDoor +
-          " for you. You selected door " +
-          usrSelDoor +
-          ". Do you want to change your current door ?",
+        confirmMsg: "Monty selected Door " + montySelectedDoor + " for you. You selected door " + usrSelDoor + ". Do you want to change your current door ?",
       });
     }
   };
@@ -104,24 +100,41 @@ class MontyGame extends React.Component {
 
   render() {
     const { montyCards, openModal, confirmMsg } = this.state;
+    const { gameRounds, nextGameRound } = this.props;
 
     return (
       <div data-test="MontyGameComponent">
+        {gameRounds >= nextGameRound &&
+          <div className={classes.roundDiv}>
+            {"Round : " + nextGameRound + "/" + gameRounds}
+          </div>
+        }
         {montyCards && montyCards.length >= 3 && (
           <MontyGameCard
             cards={montyCards}
             handleUserSelection={this.handleUserSelection}
           />
-        )}
+        )
+        }
         <DialogConfirm
           openModal={openModal}
           msg={confirmMsg}
           handleConfirm={this.handleConfirmResponse}
         />
-      </div>
+      </div >
     );
   }
 }
 
+MontyGame.propTypes={
+  classes: PropTypes.object.isRequired,
+  currentUser: PropTypes.array,
+  reset:PropTypes.bool,
+  updateUserStatus: PropTypes.func,
+  gameRounds: PropTypes.number,
+  nextGameRound: PropTypes.number,
+  
+
+}
 
 export default MontyGame;

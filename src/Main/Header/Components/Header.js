@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { auth } from "../../../InitialLoader/Firebase/utils";
-import ClassNames from "classnames";
 import classes from "./Header.module.css";
 import Logo from "../../../Images/Icons/qgLogo.png";
 

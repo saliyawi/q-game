@@ -1,12 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
 import ClassNames from "classnames";
 import classes from "./Home.module.css";
-import Header from "../../Header/Components/Header";
-import QGbackground from "../../../Images/Header/QGbackground.png";
 import MontyGame from "../../MontyGame/Container/MontyGame";
 import Message from "../../../Core/Components/Message";
+import gameMessages from "../../../Core/Constants/MontyMessages";
+import { MsgTypes } from "../../../Core/Constants/Types";
 
 class Home extends React.Component {
   constructor(props) {
@@ -17,23 +16,40 @@ class Home extends React.Component {
       winCount: 0,
       lossCount: 0,
       totalPlayCount: 0,
-      rounds: 0,
-      openModel: true
+      totalRounds: 0,
+      openModel: true,
+      nextGameRound: 0,
+      userCurrentResults:[]
     };
   }
 
   handlePlayBtnClick = () => {
-    this.setState({ resetGame: true, userStatusMsg: "" });
+    const { totalRounds, nextGameRound } = this.state;
+    if (parseInt(totalRounds) === parseInt(nextGameRound)) {
+      this.setState({ resetGame: false, userStatusMsg: "" });
+    } else {
+      this.setState({ resetGame: true, userStatusMsg: "" });
+    }
   };
 
-  handleUserStatus = (userStatus) => {
-    let { winCount, lossCount, totalPlayCount } = this.state;
+  handleUserStatus = (userStatus, nextRound, results) => {
+    const{currentUser} = this.props;
+    let { winCount, lossCount, totalPlayCount, totalRounds,userCurrentResults } = this.state;
     let msg = "";
     userStatus
-      ? (msg = "You WIN a CAR....!!!!")
-      : (msg = "You loose, Try Again....!!!!");
+      ? (msg = gameMessages.winCar)
+      : (msg = gameMessages.looseMsg);
     userStatus ? winCount++ : lossCount++;
     let playCount = totalPlayCount + 1;
+
+    console.log('currentUser',currentUser)
+    if(currentUser !== null){
+      userCurrentResults.push(results);
+    }
+    
+    if (parseInt(nextRound)  === parseInt(totalRounds)) {
+        
+    }
 
     this.setState({
       userStatusMsg: msg,
@@ -41,11 +57,16 @@ class Home extends React.Component {
       winCount: winCount,
       lossCount: lossCount,
       totalPlayCount: playCount,
-    });
+      nextGameRound: nextRound
+    },()=>{});
   };
 
   handleModelClose = () => {
     this.setState({ openModel: false })
+  }
+
+  handleUpdateData = (value) => {
+    this.setState({ totalRounds: value });
   }
 
   render() {
@@ -53,27 +74,28 @@ class Home extends React.Component {
     const {
       resetGame,
       userStatusMsg,
-      winCount,
-      lossCount,
-      totalPlayCount,
-      rounds,
-      openModel
+      totalRounds,
+      openModel,
+      nextGameRound
     } = this.state;
 
-    console.log('currentUser', currentUser)
+    //console.log('currentUser', currentUser)
     return (
       <div
         className={ClassNames(classes.root, classes.flexColumn, classes.color1)}
         data-test="homeComponent"
       >
         <MontyGame
+          currentUser={currentUser}
           reset={resetGame}
           updateUserStatus={this.handleUserStatus}
+          gameRounds={totalRounds}
+          nextGameRound={nextGameRound}
           data-test="montyGameComponent"
         />
         {userStatusMsg === '' &&
           <div className={classes.center}>
-            <span className={classes.msgText}>{"Select your lucky door first....."}</span>
+            <span className={classes.msgText}>{gameMessages.selectDoor}</span>
           </div>}
         <div className={ClassNames(classes.center, classes.topPadding)} data-test="playAgainButton">
           <button
@@ -84,38 +106,31 @@ class Home extends React.Component {
             Start
           </button>
         </div>
-        {rounds === 0 && currentUser === null &&
+        {totalRounds === 0 && currentUser === null &&
           <Message openModal={openModel}
-            handleModelClose={this.handleModelClose}>
+            handleModelClose={this.handleModelClose}
+            msg={gameMessages.pleaseLogin}
+            msgType={MsgTypes.info}>
           </Message>
         }
-        {rounds === 0 && currentUser !== null &&
+        {currentUser !== null &&
           <Message openModal={openModel}
-            handleModelClose={this.handleModelClose}>
+            handleModelClose={this.handleModelClose}
+            updateData={this.handleUpdateData}
+            msgType={MsgTypes.input}>
           </Message>
         }
         <div className={ClassNames(classes.center, classes.topPadding)}>
           <span className={classes.msgText}>{userStatusMsg}</span>
         </div>
-        {/*<div className={classes.center}>
-          <span className={classes.msgText}>
-            {"Winning Count : " + winCount + "/" + totalPlayCount}{" "}
-          </span>
-        </div>
-        <div className={classes.center}>
-          <span className={classes.msgText}>
-            {"Loss Count : " + lossCount + "/" + totalPlayCount}
-          </span>
-        </div> */}
       </div>
     );
   }
 }
 
-// Home.propTypes = {
-//   classes: PropTypes.object.isRequired,
-// };
-
-//const HomeWithStyles = withStyles(styles)(Home);
+Home.propTypes = {
+  classes: PropTypes.object.isRequired,
+  currentUser:PropTypes.object
+};
 
 export default Home;

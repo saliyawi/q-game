@@ -6,7 +6,7 @@ import Login from "./Main/Login/Components/Login";
 import MainLayout from "./Main/Layouts/Components/MainLayout";
 import HomepageLayout from "./Main/Layouts/Components/HomePageLayout";
 import Results from "./Main/Results/Components/Results";
-import {handleUserProfile} from '../src/Core/Api/UserApi';
+import handleUserProfile from '../src/Core/Api/UserApi';
  
 const initialState = {
   currentUser: null,

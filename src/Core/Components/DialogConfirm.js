@@ -6,6 +6,7 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { withStyles } from '@material-ui/core/styles';
+import gameMessages from '../Constants/MontyMessages';
 
 
 const styles = () => ({
@@ -48,7 +49,7 @@ const DialogConfirm = (props) => {
         >
             <DialogTitle className={ClassNames(classes.dialogTitle)}>
                 <div className={ClassNames(classes.lFont)}>
-                    {"MONTY"}
+                    {gameMessages.monty}
                 </div>
             </DialogTitle>
             <DialogContent className={classes.dialogBg}>

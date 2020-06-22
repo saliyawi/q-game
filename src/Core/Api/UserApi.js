@@ -1,7 +1,7 @@
 import callApi from '../Utilities/callApi';
 import apiUrls from '../Constants/ApiUrls';
 
-export const handleUserProfile = userAuth => {
+export default function handleUserProfile (userAuth) {
     if (!userAuth) return;
     const { displayName, email } = userAuth;
 
@@ -16,7 +16,9 @@ export const handleUserProfile = userAuth => {
 
     // Save user into API
     callApi(url, method, data).then((response) => {
-        console.log('response', response);
+        if(response && response.status === 200){
+           return response; 
+        }    
     });
 
 };
