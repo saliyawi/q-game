@@ -7,7 +7,7 @@ import MainLayout from "./Main/Layouts/Components/MainLayout";
 import HomepageLayout from "./Main/Layouts/Components/HomePageLayout";
 import Results from "./Main/Results/Components/Results";
 import handleUserProfile from '../src/Core/Api/UserApi';
- 
+
 const initialState = {
   currentUser: null,
 };
@@ -25,7 +25,7 @@ class App extends Component {
     this.authListener = auth.onAuthStateChanged((userAuth) => {
       if (!userAuth) {
         this.setState({ ...initialState });
-      } else{
+      } else {
         handleUserProfile(userAuth); // Set user into local DB
       }
 
@@ -44,7 +44,7 @@ class App extends Component {
     return (
       <div className="App" data-test="appComponent">
         <Switch>
-        <Route
+          <Route
             path="/results"
             render={() => (
               <MainLayout currentUser={currentUser}>
@@ -58,17 +58,17 @@ class App extends Component {
               currentUser ? (
                 <Redirect to="/" />
               ) : (
-                <MainLayout currentUser={currentUser}>
-                  <Login />
-                </MainLayout>
-              )
+                  <MainLayout currentUser={currentUser}>
+                    <Login />
+                  </MainLayout>
+                )
             }
           />
           <Route
             path="/"
             render={() => (
               <HomepageLayout currentUser={currentUser}>
-                <Home currentUser={currentUser}/>
+                <Home currentUser={currentUser} />
               </HomepageLayout>
             )}
           />

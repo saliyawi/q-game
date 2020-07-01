@@ -129,8 +129,7 @@ class Home extends React.Component {
 }
 
 Home.propTypes = {
-  classes: PropTypes.object.isRequired,
-  currentUser: PropTypes.object
+  currentUser: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
 };
 
 export default Home;

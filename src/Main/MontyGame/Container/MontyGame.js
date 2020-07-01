@@ -14,7 +14,7 @@ class MontyGame extends React.Component {
   //Life cycle hooks
 
   componentWillReceiveProps(nextProps) {
-    const { reset} = nextProps;
+    const { reset } = nextProps;
 
     if (reset) {
       this.setState({ ...this.getInitialState() });
@@ -31,7 +31,7 @@ class MontyGame extends React.Component {
       openModal: false,
       confirmMsg: "",
       resetGame: true,
-     
+
     };
   }
 
@@ -126,14 +126,13 @@ class MontyGame extends React.Component {
   }
 }
 
-MontyGame.propTypes={
-  classes: PropTypes.object.isRequired,
-  currentUser: PropTypes.array,
-  reset:PropTypes.bool,
+MontyGame.propTypes = {
+  currentUser: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
+  reset: PropTypes.bool,
   updateUserStatus: PropTypes.func,
   gameRounds: PropTypes.number,
   nextGameRound: PropTypes.number,
-  
+
 
 }
 
