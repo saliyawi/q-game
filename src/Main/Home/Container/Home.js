@@ -19,7 +19,7 @@ class Home extends React.Component {
       totalRounds: 0,
       openModel: true,
       nextGameRound: 0,
-      userCurrentResults:[]
+      userCurrentResults: []
     };
   }
 
@@ -33,8 +33,8 @@ class Home extends React.Component {
   };
 
   handleUserStatus = (userStatus, nextRound, results) => {
-    const{currentUser} = this.props;
-    let { winCount, lossCount, totalPlayCount, totalRounds,userCurrentResults } = this.state;
+    const { currentUser } = this.props;
+    let { winCount, lossCount, totalPlayCount, totalRounds, userCurrentResults } = this.state;
     let msg = "";
     userStatus
       ? (msg = gameMessages.winCar)
@@ -42,13 +42,13 @@ class Home extends React.Component {
     userStatus ? winCount++ : lossCount++;
     let playCount = totalPlayCount + 1;
 
-    console.log('currentUser',currentUser)
-    if(currentUser !== null){
+    console.log('currentUser', currentUser)
+    if (currentUser !== null) {
       userCurrentResults.push(results);
     }
-    
-    if (parseInt(nextRound)  === parseInt(totalRounds)) {
-        
+
+    if (parseInt(nextRound) === parseInt(totalRounds)) {
+
     }
 
     this.setState({
@@ -58,7 +58,7 @@ class Home extends React.Component {
       lossCount: lossCount,
       totalPlayCount: playCount,
       nextGameRound: nextRound
-    },()=>{});
+    }, () => { });
   };
 
   handleModelClose = () => {
@@ -130,7 +130,9 @@ class Home extends React.Component {
 
 Home.propTypes = {
   classes: PropTypes.object.isRequired,
-  currentUser:PropTypes.object
+  currentUser: PropTypes.object
 };
 
 export default Home;
+
+// Test Commit
