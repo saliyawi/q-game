@@ -27,8 +27,4 @@ describe("Header Component", () => {
     expect(logo.length).toBe(1);
   });
 
-  it("Should render ToolBar component without errors", () => {
-    const wrapper = findByTestAtrr(component, "toolBarComponent");
-    expect(wrapper.length).toBe(1);
-  });
 });

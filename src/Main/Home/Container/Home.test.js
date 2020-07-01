@@ -45,20 +45,6 @@ describe("Home Component", () => {
     expect(resetGame).toBe(false);
   });
 
-  it("handlePlayBtnClick Method should update resetGame state as expected", () => {
-    const classInstance = wrapper.instance();
-    classInstance.handlePlayBtnClick();
-    const resetGame = classInstance.state.resetGame;
-    expect(resetGame).toBe(true);
-  });
-
-  describe("Header Component", () => {
-    it("Should render Header component without errors", () => {
-      const component = findByTestAtrr(wrapper, "headerComponent");
-      expect(component.length).toBe(1);
-    });
-  });
-
   describe("MontyGame Component", () => {
     it("Should render MontyGame component without errors", () => {
       const component = findByTestAtrr(wrapper, "montyGameComponent");
